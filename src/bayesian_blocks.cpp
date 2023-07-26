@@ -125,7 +125,7 @@ arma::Mat<int> disc_dataset_bb_cpp(const arma::mat& expr_data, const int n_cores
   int i;
   arma::vec bin_edges;
   
-  #pragma omp parallel for shared(disc_data) private(i,bin_edges) schedule(auto) default(none)
+  #pragma omp parallel for shared(disc_data, n_genes, data, n_samples) private(i,bin_edges) schedule(auto) default(none)
   for(i=0; i<n_genes; ++i)
   {
     bin_edges = get_bb_bin_edges(data.col(i));
