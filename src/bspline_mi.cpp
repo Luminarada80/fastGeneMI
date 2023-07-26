@@ -158,7 +158,7 @@ arma::mat mim_bspline_cpp(const arma::mat& expr_data, const int k, const int n_b
   
   const arma::mat data = expr_data;
   std::vector<arma::sp_mat> bspl_coeffs(n_genes);
-  #pragma omp parallel for shared(bspl_coeffs, n_genes, data, t, n_bins) schedule(auto) default(none)
+  #pragma omp parallel for shared(bspl_coeffs, n_genes, data, t, k, n_bins) schedule(auto) default(none)
   for(int j=0; j<n_genes; ++j)
   {
     bspl_coeffs[j] = get_bspl_coeffs(data.col(j), n_bins, k, t);
